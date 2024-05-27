@@ -11,5 +11,5 @@ class Assets {
   static const String fontsAsapCondensedRegular =
       'assets/fonts/AsapCondensed-Regular.ttf';
   static const String imagesOnBoarding1 = 'assets/images/onBoarding1.png';
-  static const String imagesOnBoaring2 = 'assets/images/onBoarding2.png';
+  static const String imagesOnBoarding2 = 'assets/images/onBoarding2.png';
 }

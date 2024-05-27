@@ -10,8 +10,8 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        const AppBarDecoration(),
         BodyView(),
+        const AppBarDecoration(),
       ],
     );
   }
