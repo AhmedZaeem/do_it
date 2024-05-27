@@ -1,3 +1,4 @@
+import 'package:do_it/views/task_details_page/task_details_view.dart';
 import 'package:do_it/views/tasks_list_view/tasks_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -13,7 +14,12 @@ class TasksListView extends StatelessWidget {
         padding: EdgeInsets.symmetric(vertical: 24.h),
         child: FloatingActionButton(
           backgroundColor: Theme.of(context).colorScheme.primary,
-          onPressed: () {},
+          onPressed: () => Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const TaskDetailsView(),
+            ),
+          ),
           child: Icon(
             Icons.article_outlined,
             color: Colors.white,
@@ -43,6 +49,7 @@ class TasksListView extends StatelessWidget {
             ),
             SizedBox(height: 20.h),
             TasksList(),
+            SizedBox(height: 62.h),
           ],
         ),
       ),
