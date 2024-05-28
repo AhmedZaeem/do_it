@@ -19,4 +19,23 @@ class HiveController {
       await Hive.openBox(hiveBox.toString());
     }
   }
+
+  put(UuidV4 key, value) async {
+    var hiveBox = await Hive.box(SharedPreferencesController()
+            .getData(SharedPreferencesKeys.hiveBlock)!)
+        .put(key, value);
+  }
+
+  get(UuidV4 key) async {
+    var data = await Hive.box(SharedPreferencesController()
+            .getData(SharedPreferencesKeys.hiveBlock)!)
+        .get(key);
+    return data;
+  }
+
+  delete(UuidV4 key) async {
+    await Hive.box(SharedPreferencesController()
+            .getData(SharedPreferencesKeys.hiveBlock)!)
+        .delete(key);
+  }
 }
