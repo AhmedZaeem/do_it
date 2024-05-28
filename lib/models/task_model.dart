@@ -1,7 +1,9 @@
+import 'package:uuid/v4.dart';
+
 class TaskModel {
   String task;
   bool isCompleted;
-  String id;
+  UuidV4 id;
   bool favorite;
 
   TaskModel(

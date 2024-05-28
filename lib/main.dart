@@ -9,7 +9,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SharedPreferencesController().initCache();
-  await HiveController.initHive();
+  await HiveController().initHive();
   runApp(const ProviderScope(child: MyApp()));
 }
 

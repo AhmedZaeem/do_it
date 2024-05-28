@@ -4,38 +4,55 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:uuid/v4.dart';
 
 class HiveController {
-  static initHive() async {
-    SharedPreferencesController sharedPreferencesController =
-        SharedPreferencesController();
+  final _prefsController = SharedPreferencesController();
+
+  Future<void> initHive() async {
     await Hive.initFlutter();
-    if (sharedPreferencesController.getData(SharedPreferencesKeys.hiveBlock) !=
-        null) {
-      await Hive.openBox(sharedPreferencesController
-          .getData(SharedPreferencesKeys.hiveBlock)!);
-    } else {
-      UuidV4 hiveBox = const UuidV4();
-      SharedPreferencesController()
-          .saveData(SharedPreferencesKeys.hiveBlock, hiveBox.toString());
-      await Hive.openBox(hiveBox.toString());
+    try {
+      await _openBox(SharedPreferencesKeys.hiveBlock);
+      await _openBox(SharedPreferencesKeys.favorite);
+    } catch (e) {
+      print('Failed to initialize Hive: $e');
     }
   }
 
-  put(UuidV4 key, value) async {
-    var hiveBox = await Hive.box(SharedPreferencesController()
-            .getData(SharedPreferencesKeys.hiveBlock)!)
-        .put(key, value);
+  Future<void> _openBox(SharedPreferencesKeys key) async {
+    try {
+      var boxName = await _prefsController.getData(key) ?? UuidV4().toString();
+      await Hive.openBox(boxName);
+      _prefsController.saveData(key, boxName);
+    } catch (e) {
+      return Future.error('error');
+    }
   }
 
-  get(UuidV4 key) async {
-    var data = await Hive.box(SharedPreferencesController()
-            .getData(SharedPreferencesKeys.hiveBlock)!)
-        .get(key);
-    return data;
+  Future<void> put(UuidV4 key, value) async {
+    try {
+      var boxName =
+          await _prefsController.getData(SharedPreferencesKeys.hiveBlock);
+      await Hive.box(boxName!).put(key, value);
+    } catch (e) {
+      return Future.error('error');
+    }
   }
 
-  delete(UuidV4 key) async {
-    await Hive.box(SharedPreferencesController()
-            .getData(SharedPreferencesKeys.hiveBlock)!)
-        .delete(key);
+  Future<dynamic> get(UuidV4 key) async {
+    try {
+      var boxName =
+          await _prefsController.getData(SharedPreferencesKeys.hiveBlock);
+      return Hive.box(boxName!).get(key);
+    } catch (e) {
+      return Future.error('error');
+    }
+  }
+
+  Future<void> delete(UuidV4 key) async {
+    try {
+      var boxName =
+          await _prefsController.getData(SharedPreferencesKeys.hiveBlock);
+      await Hive.box(boxName!).delete(key);
+    } catch (e) {
+      return Future.error('error');
+    }
   }
 }
