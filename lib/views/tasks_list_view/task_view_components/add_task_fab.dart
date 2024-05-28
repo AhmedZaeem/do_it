@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../task_details_page/task_details_view.dart';
+import '../../task_details_page/task_details_view.dart';
 
 class AddTaskFab extends StatelessWidget {
   const AddTaskFab({super.key});

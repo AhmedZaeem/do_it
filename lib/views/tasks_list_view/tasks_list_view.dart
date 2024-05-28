@@ -1,6 +1,6 @@
-import 'package:do_it/views/tasks_list_view/add_task_fab.dart';
-import 'package:do_it/views/tasks_list_view/tasks_list.dart';
-import 'package:do_it/views/tasks_list_view/tasks_list_header.dart';
+import 'package:do_it/views/tasks_list_view/task_view_components/add_task_fab.dart';
+import 'package:do_it/views/tasks_list_view/task_view_components/tasks_list.dart';
+import 'package:do_it/views/tasks_list_view/task_view_components/tasks_list_header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

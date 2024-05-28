@@ -1,7 +1,9 @@
-import 'package:do_it/constants.dart';
 import 'package:do_it/controllers/shared_preferences_controller.dart';
+import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:uuid/v4.dart';
+
+import '../constants.dart';
 
 class HiveController {
   final _prefsController = SharedPreferencesController();
@@ -12,13 +14,15 @@ class HiveController {
       await _openBox(SharedPreferencesKeys.hiveBlock);
       await _openBox(SharedPreferencesKeys.favorite);
     } catch (e) {
-      print('Failed to initialize Hive: $e');
+      if (kDebugMode) {
+        print('Failed to initialize Hive: $e');
+      }
     }
   }
 
   Future<void> _openBox(SharedPreferencesKeys key) async {
     try {
-      var boxName = await _prefsController.getData(key) ?? UuidV4().toString();
+      var boxName = await _prefsController.getData(key);
       await Hive.openBox(boxName);
       _prefsController.saveData(key, boxName);
     } catch (e) {
@@ -30,7 +34,9 @@ class HiveController {
     try {
       var boxName =
           await _prefsController.getData(SharedPreferencesKeys.hiveBlock);
-      await Hive.box(boxName!).put(key, value);
+      var box = await Hive.openBox(boxName!);
+      await box.put(key, value);
+      await box.close();
     } catch (e) {
       return Future.error('error');
     }
@@ -40,7 +46,10 @@ class HiveController {
     try {
       var boxName =
           await _prefsController.getData(SharedPreferencesKeys.hiveBlock);
-      return Hive.box(boxName!).get(key);
+      var box = await Hive.openBox(boxName!);
+      var value = box.get(key);
+      await box.close();
+      return value;
     } catch (e) {
       return Future.error('error');
     }
@@ -50,9 +59,24 @@ class HiveController {
     try {
       var boxName =
           await _prefsController.getData(SharedPreferencesKeys.hiveBlock);
-      await Hive.box(boxName!).delete(key);
+      var box = await Hive.openBox(boxName!);
+      await box.delete(key);
+      await box.close();
     } catch (e) {
       return Future.error('error');
+    }
+  }
+
+  Future<List<dynamic>> getAll() async {
+    try {
+      var boxName =
+          await _prefsController.getData(SharedPreferencesKeys.hiveBlock);
+      var box = await Hive.openBox(boxName!);
+      var values = box.values.toList();
+      await box.close();
+      return values;
+    } catch (e) {
+      return [];
     }
   }
 }
