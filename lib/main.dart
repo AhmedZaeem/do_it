@@ -1,10 +1,16 @@
 import 'package:do_it/constants.dart';
+import 'package:do_it/controllers/hive_controller.dart';
+import 'package:do_it/controllers/shared_preferences_controller.dart';
 import 'package:do_it/views/home_view/home_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SharedPreferencesController().initCache();
+  await HiveController.initHive();
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -19,9 +25,7 @@ class MyApp extends StatelessWidget {
         darkTheme: nightMode,
         theme: dayMode,
         themeMode: ThemeMode.dark,
-        home: const Scaffold(
-          body: HomeView(),
-        ),
+        home: const HomeView(),
       ),
     );
   }
