@@ -1,5 +1,6 @@
-import 'package:do_it/views/task_details_page/task_details_view.dart';
+import 'package:do_it/views/tasks_list_view/add_task_fab.dart';
 import 'package:do_it/views/tasks_list_view/tasks_list.dart';
+import 'package:do_it/views/tasks_list_view/tasks_list_header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -12,43 +13,15 @@ class TasksListView extends StatelessWidget {
       backgroundColor: Colors.transparent,
       floatingActionButton: Padding(
         padding: EdgeInsets.symmetric(vertical: 24.h),
-        child: FloatingActionButton(
-          backgroundColor: Theme.of(context).colorScheme.primary,
-          onPressed: () => Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const TaskDetailsView(),
-            ),
-          ),
-          child: Icon(
-            Icons.article_outlined,
-            color: Colors.white,
-          ),
-        ),
+        child: const AddTaskFab(),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
             SizedBox(height: 145.h),
-            Row(
-              children: <Widget>[
-                Text('Task List',
-                    style: Theme.of(context).textTheme.displayLarge),
-                const Spacer(),
-                IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.sunny,
-                    )),
-                IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.favorite_border,
-                    )),
-              ],
-            ),
+            const TasksListHeader(),
             SizedBox(height: 20.h),
-            TasksList(),
+            const TasksList(),
             SizedBox(height: 62.h),
           ],
         ),
