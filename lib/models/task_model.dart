@@ -1,14 +1,27 @@
-import 'package:uuid/v4.dart';
+import 'package:hive_flutter/adapters.dart';
 
-class TaskModel {
+part 'task_model.g.dart';
+
+@HiveType(typeId: 0)
+class TaskModel extends HiveObject {
+  @HiveField(1)
   String task;
+  @HiveField(2)
+  String title;
+  @HiveField(3)
+  String date;
+  @HiveField(4)
   bool isCompleted;
-  UuidV4 id;
+  @HiveField(0)
+  int id;
+  @HiveField(5)
   bool favorite;
 
   TaskModel(
       {required this.task,
-      required this.isCompleted,
+      this.isCompleted = false,
       required this.id,
-      required this.favorite});
+      this.favorite = false,
+      required this.title,
+      required this.date});
 }

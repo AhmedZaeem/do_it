@@ -3,14 +3,9 @@ import 'package:do_it/views/task_details_page/task_details_table/task_details_bo
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class TaskDetailsView extends StatefulWidget {
+class TaskDetailsView extends StatelessWidget {
   const TaskDetailsView({super.key});
 
-  @override
-  State<TaskDetailsView> createState() => _TaskDetailsViewState();
-}
-
-class _TaskDetailsViewState extends State<TaskDetailsView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,9 +19,9 @@ class _TaskDetailsViewState extends State<TaskDetailsView> {
               Text('Create a task',
                   style: Theme.of(context).textTheme.displayLarge),
               SizedBox(height: 28.h),
-              TaskDetailsBoard(),
+              const TaskDetailsBoard(),
               SizedBox(height: 12.h),
-              TaskDetailsActionSection(),
+              const TaskDetailsActionSection(),
             ],
           ),
         ),

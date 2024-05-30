@@ -1,3 +1,5 @@
+import 'package:do_it/view_model/task_model_view/task_state_notifier.dart';
+import 'package:do_it/views/place_holders/no_tasks.dart';
 import 'package:do_it/views/tasks_list_view/task_view_components/add_task_fab.dart';
 import 'package:do_it/views/tasks_list_view/task_view_components/tasks_list.dart';
 import 'package:do_it/views/tasks_list_view/task_view_components/tasks_list_header.dart';
@@ -6,7 +8,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class TasksListView extends StatelessWidget {
   const TasksListView({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

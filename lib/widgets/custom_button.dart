@@ -19,6 +19,14 @@ class CustomButton extends StatelessWidget {
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.primary,
           borderRadius: BorderRadius.circular(50.r),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(.2),
+              offset: Offset(0, 1.h),
+              blurRadius: 16,
+              blurStyle: BlurStyle.outer,
+            ),
+          ],
         ),
         child: Text(
           btnText,

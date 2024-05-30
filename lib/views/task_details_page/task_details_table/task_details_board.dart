@@ -1,19 +1,10 @@
 import 'package:do_it/views/task_details_page/task_details_table/task_details_header.dart';
-import 'package:do_it/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../widgets/custom_text_field.dart';
 import 'details_table.dart';
 
-class TaskDetailsBoard extends StatefulWidget {
+class TaskDetailsBoard extends StatelessWidget {
   const TaskDetailsBoard({super.key});
-
-  @override
-  State<TaskDetailsBoard> createState() => _TaskDetailsBoardState();
-}
-
-class _TaskDetailsBoardState extends State<TaskDetailsBoard> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -22,11 +13,19 @@ class _TaskDetailsBoardState extends State<TaskDetailsBoard> {
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.onPrimaryContainer,
         borderRadius: BorderRadius.circular(12.r),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(.4),
+            offset: const Offset(0, 4),
+            blurRadius: 8,
+            blurStyle: BlurStyle.outer,
+          ),
+        ],
       ),
-      child: Column(
+      child: const Column(
         children: [
           TaskDetailsHeader(),
-          const DetailsTable(),
+          DetailsTable(),
         ],
       ),
     );

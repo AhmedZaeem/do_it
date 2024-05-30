@@ -3,16 +3,18 @@ import 'package:do_it/widgets/custom_check_box.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class TasksListTile extends StatelessWidget {
-  const TasksListTile({super.key});
+import '../../../models/task_model.dart';
 
+class TasksListTile extends StatelessWidget {
+  const TasksListTile({super.key, required this.task});
+  final TaskModel task;
   @override
   Widget build(BuildContext context) {
     return Row(
       children: <Widget>[
-        CustomCheckBox(isChecked: false),
+        CustomCheckBox(isChecked: task.isCompleted),
         SizedBox(width: 20.w),
-        TaskTitleWidget(),
+        TaskTitleWidget(task: task),
       ],
     );
   }

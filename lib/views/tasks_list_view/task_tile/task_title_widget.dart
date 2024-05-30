@@ -1,9 +1,10 @@
+import 'package:do_it/models/task_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class TaskTitleWidget extends StatelessWidget {
-  const TaskTitleWidget({super.key});
-
+  const TaskTitleWidget({super.key, required this.task});
+  final TaskModel task;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -31,9 +32,9 @@ class TaskTitleWidget extends StatelessWidget {
           shrinkWrap: true,
           children: <Widget>[
             Text(
-              List.generate(200, (index) => 'aaaa').toString(),
+              task.task,
               textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.black),
+              style: const TextStyle(color: Colors.black),
             ),
           ],
         ),
