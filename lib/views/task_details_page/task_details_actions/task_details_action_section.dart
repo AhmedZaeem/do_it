@@ -10,7 +10,7 @@ class TaskDetailsActionSection extends ConsumerWidget {
   const TaskDetailsActionSection({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var controllers = ref.read(textControllers);
+    ref.read(textControllers);
     ref.read(taskChangeNotifier);
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -21,12 +21,7 @@ class TaskDetailsActionSection extends ConsumerWidget {
         CustomButton(
             btnText: 'Save',
             width: 140,
-            onTap: () async => await TaskModelView().addTask(
-                  context,
-                  taskTitle: controllers[0],
-                  taskDate: controllers[1],
-                  taskDetails: controllers[2],
-                )),
+            onTap: () async => await TaskModelView().addTask(context)),
       ],
     );
   }
