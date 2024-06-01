@@ -1,13 +1,13 @@
-import 'package:do_it/controllers/hive_controller.dart';
-import 'package:do_it/models/task_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import '../../constants.dart';
+import 'package:do_it/models/task_model.dart';
+import 'package:do_it/controllers/hive_controller.dart';
 
 class TaskStateNotifier extends StateNotifier<List<TaskModel>> {
   final _hiveController = HiveController();
 
-  TaskStateNotifier() : super([]);
+  TaskStateNotifier() : super([]) {
+    getAllTasks();
+  }
 
   addTask(int key, TaskModel value) async {
     await _hiveController.put(key, value);
@@ -27,18 +27,11 @@ class TaskStateNotifier extends StateNotifier<List<TaskModel>> {
     }
   }
 
-  Future<List<TaskModel>> getAllTasks() async {
-    try {
-      var values =
-          await _hiveController.getAll(SharedPreferencesKeys.hiveBlock);
-      state = values.map((e) => e as TaskModel).toList();
-    } catch (e) {
-      print(e);
-    }
+  List<TaskModel> getAllTasks() {
+    var values = _hiveController.getAll();
+    state = values.map((e) => e as TaskModel).toList().reversed.toList();
     return state;
   }
-
-  bool get isEmpty => state.isEmpty;
 }
 
 final taskChangeNotifier =

@@ -10,27 +10,17 @@ class TasksList extends ConsumerWidget {
   const TasksList({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var tasks = ref.watch(taskChangeNotifier.notifier);
-    return FutureBuilder(
-      future: tasks.getAllTasks(),
-      builder: (context, snapshot) {
-        if (snapshot.hasData &&
-            snapshot.connectionState == ConnectionState.done) {
-          return ListView.separated(
-            shrinkWrap: true,
-            physics: const BouncingScrollPhysics(),
-            itemCount: snapshot.data!.length,
-            itemBuilder: (context, index) {
-              return TasksListTile(
-                task: snapshot.data![index],
-              );
-            },
-            separatorBuilder: (context, index) => SizedBox(height: 24.h),
-          );
-        } else {
-          return const CircularProgressIndicator();
-        }
+    var tasks = ref.watch(taskChangeNotifier);
+    return ListView.separated(
+      shrinkWrap: true,
+      physics: const BouncingScrollPhysics(),
+      itemCount: tasks.length,
+      itemBuilder: (context, index) {
+        return TasksListTile(
+          task: tasks[index],
+        );
       },
+      separatorBuilder: (context, index) => SizedBox(height: 24.h),
     );
   }
 }

@@ -4,17 +4,21 @@ import 'package:flutter/cupertino.dart';
 import '../../models/task_model.dart';
 
 class TaskModelView {
-  addTask(BuildContext context,
+  final taskNotifier = TaskStateNotifier();
+
+  addTask(context,
       {required TextEditingController taskTitle,
       required TextEditingController taskDetails,
       required TextEditingController taskDate}) async {
-    var id = (await TaskStateNotifier().getAllTasks()).length;
+    var id = taskNotifier.getAllTasks().length;
     TaskModel task = TaskModel(
         id: id,
         task: taskDetails.text,
         title: taskTitle.text,
         date: taskDate.text);
-    await TaskStateNotifier().addTask(id, task);
+    await taskNotifier.addTask(id, task);
+    await context.invalidate(taskChangeNotifier);
+    await context.refresh(taskChangeNotifier);
     taskTitle.clear();
     taskDetails.clear();
     taskDate.clear();
