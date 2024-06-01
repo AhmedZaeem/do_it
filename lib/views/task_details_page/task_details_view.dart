@@ -3,9 +3,11 @@ import 'package:do_it/views/task_details_page/task_details_table/task_details_bo
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class TaskDetailsView extends StatelessWidget {
-  const TaskDetailsView({super.key});
+import '../../models/task_model.dart';
 
+class TaskDetailsView extends StatelessWidget {
+  const TaskDetailsView({super.key, this.task});
+  final TaskModel? task;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +23,7 @@ class TaskDetailsView extends StatelessWidget {
               SizedBox(height: 28.h),
               const TaskDetailsBoard(),
               SizedBox(height: 12.h),
-              const TaskDetailsActionSection(),
+              TaskDetailsActionSection(update: task != null),
             ],
           ),
         ),

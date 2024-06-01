@@ -7,21 +7,26 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../widgets/custom_button.dart';
 
 class TaskDetailsActionSection extends ConsumerWidget {
-  const TaskDetailsActionSection({super.key});
+  const TaskDetailsActionSection({super.key, this.update = false});
+  final bool update;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.read(textControllers);
+    var controller = TaskModelView();
+    var controllers = ref.read(textControllers);
     ref.read(taskChangeNotifier);
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         CustomButton(
-            btnText: 'Back', width: 140, onTap: () => Navigator.pop(context)),
+            btnText: 'Back',
+            width: 140,
+            onTap: () =>
+                controller.clearControllersAndPop(context, controllers)),
         SizedBox(width: 32.w),
         CustomButton(
-            btnText: 'Save',
+            btnText: update ? 'Update' : 'Save',
             width: 140,
-            onTap: () async => await TaskModelView().addTask(context)),
+            onTap: () => controller.addTask(context, controllers)),
       ],
     );
   }
