@@ -14,9 +14,9 @@ class TaskStateNotifier extends StateNotifier<List<TaskModel>> {
     state.add(value);
   }
 
-  void removeTask(int key) {
+  removeTask(int key) async {
     state.removeWhere((element) => element.id == key);
-    _hiveController.delete(key);
+    await _hiveController.delete(key);
   }
 
   void updateTask(int key, TaskModel value) {
