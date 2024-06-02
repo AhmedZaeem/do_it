@@ -6,11 +6,9 @@
 
 <h2>🚀 Demo</h2>
 
-<h2>Project Screenshots:</h2>
+<h2>Project demo:</h2>
 
-<img src="https://github.com/AhmedZaeem/do_it/assets/91721920/4775c0df-728f-4c8f-b260-bf22ccc8948d" alt="project-screenshot" width="1080" height="2220/">
-
-
+[Project demo](https://github.com/AhmedZaeem/do_it/assets/91721920/4775c0df-728f-4c8f-b260-bf22ccc8948d)
 
 <h2>🧐 Features</h2>
 
@@ -27,8 +25,6 @@ Here're some of the project's best features:
 *   CRUD operations
 *   Filter data for favorite tasks
 *   Mark a task as done
-
-
 
 <h2>💻 Built with</h2>
 
