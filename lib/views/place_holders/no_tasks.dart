@@ -17,7 +17,7 @@ class NoTasks extends StatelessWidget {
         ),
         SizedBox(height: 16.h),
         const Text(
-          'No tasks yet',
+          'No tasks to show',
           style: TextStyle(
             fontSize: 24,
             color: Colors.grey,

@@ -9,7 +9,7 @@ class TaskTitleWidget extends ConsumerWidget {
   final TaskModel task;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.watch(taskChangeNotifier);
+    ref.read(taskChangeNotifier);
     return Container(
       alignment: Alignment.center,
       width: 270.w,

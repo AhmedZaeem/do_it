@@ -12,21 +12,48 @@ import '../../../view_model/task_model_view/task_state_notifier.dart';
 class TasksListTile extends ConsumerWidget {
   const TasksListTile({super.key, required this.task});
   final TaskModel task;
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.watch(taskChangeNotifier);
-    var controllers = ref.read(textControllers);
-    return Row(
-      children: <Widget>[
-        CustomCheckBox(
-          isChecked: task.isCompleted,
-          onTap: () => TaskModelView().markAsCompleted(context, task),
-        ),
-        SizedBox(width: 20.w),
-        GestureDetector(
-            onTap: () => TaskModelView().viewTask(context, task, controllers),
-            child: TaskTitleWidget(task: task)),
-      ],
+    return GestureDetector(
+      onLongPress: () => _showDeleteDialog(context, ref),
+      child: Row(
+        children: <Widget>[
+          CustomCheckBox(
+            isChecked: task.isCompleted,
+            onTap: () => TaskModelView().markAsCompleted(context, task),
+          ),
+          SizedBox(width: 20.w),
+          GestureDetector(
+            onTap: () => TaskModelView()
+                .viewTask(context, task, ref.read(textControllers)),
+            child: TaskTitleWidget(task: task),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _showDeleteDialog(BuildContext context, WidgetRef ref) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Delete Task'),
+        content: const Text('Are you sure you want to delete this task?'),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () async {
+              await TaskModelView().deleteTask(ref, task);
+              Navigator.pop(context);
+            },
+            child: const Text('Delete'),
+          ),
+        ],
+      ),
     );
   }
 }

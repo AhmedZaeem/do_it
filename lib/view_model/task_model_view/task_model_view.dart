@@ -1,5 +1,6 @@
 import 'package:do_it/view_model/task_model_view/task_state_notifier.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../constants.dart';
 import '../../models/task_model.dart';
 import '../../views/task_details_page/task_details_view.dart';
@@ -23,6 +24,11 @@ class TaskModelView {
       taskNotifier.updateTask(task.id, task);
       clearControllersAndPop(context, controllers);
     }
+  }
+
+  deleteTask(WidgetRef ref, TaskModel task) async {
+    await taskNotifier.removeTask(task.id);
+    _refreshState(ref);
   }
 
   void viewTask(BuildContext context, TaskModel task,
