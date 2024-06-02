@@ -7,8 +7,6 @@
 
 <h2>🚀 Demo</h2>
 
-<h2>Project demo:</h2>
-
 [Project demo](https://github.com/AhmedZaeem/do_it/assets/91721920/4775c0df-728f-4c8f-b260-bf22ccc8948d)
 
 <h2>🧐 Features</h2>
