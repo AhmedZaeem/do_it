@@ -1,6 +1,7 @@
 <h1 align="center" id="title">Do It!</h1>
 
-<p align="center"><img src="![logo](https://github.com/AhmedZaeem/do_it/assets/91721920/66571fed-2edb-4ce2-b525-1718b772a0ab)" alt="project-image"></p>
+![logo](https://github.com/AhmedZaeem/do_it/assets/91721920/77a6a955-bcdf-4569-a4ff-25e44f7a6cd8)
+
 
 <p id="description">A better planning for a better tomorrow</p>
 
