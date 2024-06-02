@@ -1,16 +1,43 @@
-# do_it
+<h1 align="center" id="title">Do It!</h1>
 
-A todo app for a better planning
+<p align="center"><img src="![logo](https://github.com/AhmedZaeem/do_it/assets/91721920/66571fed-2edb-4ce2-b525-1718b772a0ab)" alt="project-image"></p>
 
-## Getting Started
+<p id="description">A better planning for a better tomorrow</p>
 
-This project is a starting point for a Flutter application.
+<h2>🚀 Demo</h2>
 
-A few resources to get you started if this is your first Flutter project:
+<h2>Project Screenshots:</h2>
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+<img src="https://github.com/AhmedZaeem/do_it/assets/91721920/4775c0df-728f-4c8f-b260-bf22ccc8948d" alt="project-screenshot" width="1080" height="2220/">
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+
+<h2>🧐 Features</h2>
+
+Here're some of the project's best features:
+
+*   On boarding screen
+*   SharedPreferences
+*   Dark and Light themes
+*   Riverpod 2.5
+*   Responsive design
+*   clean architecture with MVVM pattern
+*   Hive database & Hive adapter
+*   Multiple gestures for ease of use
+*   CRUD operations
+*   Filter data for favorite tasks
+*   Mark a task as done
+
+
+
+<h2>💻 Built with</h2>
+
+Technologies used in the project:
+
+*   Flutter
+*   Riverpod 2.5
+*   Hive
+
+<h2>🛡️ License:</h2>
+
+This project is licensed under the Apache License 2.0
