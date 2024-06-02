@@ -1,5 +1,6 @@
 import 'package:do_it/view_model/task_model_view/task_state_notifier.dart';
 import 'package:flutter/material.dart';
+import '../../constants.dart';
 import '../../models/task_model.dart';
 import '../../views/task_details_page/task_details_view.dart';
 
@@ -46,6 +47,12 @@ class TaskModelView {
     }
   }
 
+  favoriteTask(context, TaskModel task) {
+    task.favorite = !task.favorite;
+    _updateTaskDetails(task, context.read(textControllers));
+    taskNotifier.updateTask(task.id, task);
+  }
+
   TaskModel _createTask(List<TextEditingController> controllers) {
     return TaskModel(
       id: taskNotifier.getAllTasks().length,
@@ -72,8 +79,9 @@ class TaskModelView {
 
   void clearControllersAndPop(
       context, List<TextEditingController> controllers) {
-    controllers.forEach((controller) => controller.clear());
-
+    for (var controller in controllers) {
+      controller.clear();
+    }
     _refreshState(context);
     if (Navigator.canPop(context)) {
       Navigator.pop(context);

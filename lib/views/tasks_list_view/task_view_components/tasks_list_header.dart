@@ -1,14 +1,19 @@
-import 'package:do_it/view_model/theme_view_model/theme_view_model.dart';
+import 'package:do_it/view_model/favorite_model_view/favorite_model_view.dart';
+import 'package:do_it/view_model/favorite_model_view/favorite_state_notifier.dart';
+import 'package:do_it/view_model/task_model_view/task_model_view.dart';
+import 'package:do_it/view_model/task_model_view/task_state_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../view_model/theme_view_model/theme_state_changer.dart';
+import '../../../view_model/theme_model_view/theme_view_model.dart';
 
-class TasksListHeader extends StatelessWidget {
+class TasksListHeader extends ConsumerWidget {
   const TasksListHeader({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    ref.read(taskChangeNotifier);
+    bool showFav = ref.watch(favoriteChangeNotifier);
     return Row(
       children: <Widget>[
         Text('Task List', style: Theme.of(context).textTheme.displayLarge),
@@ -22,9 +27,11 @@ class TasksListHeader extends StatelessWidget {
                   )),
         ),
         IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.favorite_border,
+            onPressed: () {
+              FavoriteModelView().toggleFavorite(context);
+            },
+            icon: Icon(
+              showFav ? Icons.favorite : Icons.favorite_border,
             )),
       ],
     );

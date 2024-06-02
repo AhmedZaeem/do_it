@@ -27,9 +27,22 @@ class TaskStateNotifier extends StateNotifier<List<TaskModel>> {
     }
   }
 
-  List<TaskModel> getAllTasks() {
+  getAllTasks() {
     var values = _hiveController.getAll();
     state = values.map((e) => e as TaskModel).toList().reversed.toList();
+    return state;
+  }
+
+  List<TaskModel> getFavoriteTasks() {
+    var values = _hiveController.getAll();
+    state = [];
+    state = values
+        .map((e) => e as TaskModel)
+        .toList()
+        .reversed
+        .toList()
+        .where((element) => element.favorite)
+        .toList();
     return state;
   }
 }

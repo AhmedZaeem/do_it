@@ -1,4 +1,4 @@
-import 'package:do_it/view_model/theme_view_model/theme_state_changer.dart';
+import 'package:do_it/view_model/theme_model_view/theme_state_changer.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants.dart';

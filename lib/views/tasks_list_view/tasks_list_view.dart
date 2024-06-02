@@ -4,12 +4,13 @@ import 'package:do_it/views/tasks_list_view/task_view_components/add_task_fab.da
 import 'package:do_it/views/tasks_list_view/task_view_components/tasks_list.dart';
 import 'package:do_it/views/tasks_list_view/task_view_components/tasks_list_header.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class TasksListView extends StatelessWidget {
+class TasksListView extends ConsumerWidget {
   const TasksListView({super.key});
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       backgroundColor: Colors.transparent,
       floatingActionButton: Padding(
